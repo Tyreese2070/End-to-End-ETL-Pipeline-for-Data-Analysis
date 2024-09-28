@@ -26,7 +26,8 @@ def transform_data(raw_data):
             'location': race['Circuit']['Location']['locality'],
             'country': race['Circuit']['Location']['country']
         }
-    transformed_data.append(race_info)
+        # Append the race_info to the transformed_data list here
+        transformed_data.append(race_info)
     return transformed_data
 
 # Load data to csv file
@@ -72,3 +73,4 @@ def pipeline(season):
     load_to_csv(transformed_data, file_name = f'f1_season_data_{season}.csv')
     load_to_database(transformed_data, db_name=f'f1_data_{season}.db')
     
+pipeline(2024)
