@@ -72,5 +72,6 @@ def pipeline(season):
     
     load_to_csv(transformed_data, file_name = f'f1_season_data_{season}.csv')
     load_to_database(transformed_data, db_name=f'f1_data_{season}.db')
-    
+
+# example output using the 2024 season
 pipeline(2024)
