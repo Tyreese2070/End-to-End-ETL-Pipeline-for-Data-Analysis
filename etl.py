@@ -1,16 +1,13 @@
 import requests
-import pandas as pd
-from sqlalchemy import create_engine
-
-url = "https://api-formula-1.p.rapidapi.com/rankings/startinggrid"
-
-querystring = {"race":"50"}
-
-headers = {
-	"x-rapidapi-key": "d3b26e1204msh9ad243881dc1646p1c1087jsnda8fc5f6236b",
-	"x-rapidapi-host": "api-formula-1.p.rapidapi.com"
-}
-
-response = requests.get(url, headers=headers, params=querystring)
-
-print(response.json())
+import csv
+import sqlite3
+# https://apilist.fun/api/ergast-f1
+# Request data from Ergast F1 API
+def extract_data(season):
+    url = f'http://ergast.com/api/f1/{season}.json'
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception(f"Failed to fetch data from API: {response.status_code}")
